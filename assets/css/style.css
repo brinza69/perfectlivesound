@@ -1,0 +1,401 @@
+/* =========================================================
+   0) TOKENS / BASE
+   ========================================================= */
+:root{
+  --bg:#0c0b17; --surface:#121228; --muted:#1b1b3a;
+  --text:#EDEDF8; --subtle:#A9A9C9;
+  --lime:#c7ff2f; --cyan:#44d9ff; --violet:#9b5cff; --magenta:#ff4dd8;
+  --rad:18px;
+
+  /* Logo sizes */
+  --logoH-desktop:56px; --logoH-tablet:48px; --logoH-mobile:40px; --logoH-footer:44px;
+}
+
+html{scroll-behavior:smooth;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;
+  font-size-adjust:.52; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-synthesis-weight:none; text-rendering:optimizeLegibility; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92vw);margin-inline:auto}
+.center{text-align:center}
+h1{font-weight:800;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.05;margin:0 0 .4rem}
+h2{font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.15;margin:.6rem 0 .4rem}
+h3{font-weight:600;font-size:clamp(1.2rem,2vw,1.4rem);line-height:1.2;margin:.4rem 0}
+
+/* A11y */
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:#000;color:#fff;padding:6px 10px;border-radius:8px}
+
+/* =========================================================
+   1) HEADER / NAV / LOGO / CTA
+   ========================================================= */
+.hdr{position:sticky;top:0;z-index:60;backdrop-filter:saturate(120%) blur(8px);
+  background:rgba(12,11,23,.7);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.wordmark{font-weight:800;letter-spacing:.2px;font-size:1.05rem;opacity:.95}
+
+/* MENU (underline color, fără schimbare de font-weight între pagini) */
+.menu{justify-self:center;display:flex;gap:1.2rem;flex-wrap:wrap}
+.menu a{font-weight:600;position:relative;display:inline-block;padding-inline:.4rem}
+.menu a.is-active,
+.menu a[aria-current="page"]{color:transparent;
+  background:linear-gradient(90deg,var(--lime),var(--cyan),var(--violet));
+  -webkit-background-clip:text;background-clip:text}
+.menu a.is-active::after,
+.menu a[aria-current="page"]::after{
+  content:"";position:absolute;left:8%;right:8%;bottom:-10px;height:2px;
+  background:linear-gradient(90deg,var(--lime),var(--cyan),var(--violet));
+  opacity:.7;border-radius:2px}
+
+/* CTA */
+.nav-cta{justify-self:end;display:flex;align-items:center;gap:.8rem}
+.btn{display:inline-block;padding:.85rem 1.1rem;border-radius:12px;background:var(--surface);border:1px solid rgba(255,255,255,.1)}
+.btn.cta{background:linear-gradient(135deg,var(--violet),var(--cyan));color:#051018;font-weight:800;border:0}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.25)}
+.btn.big{padding:1rem 1.25rem;font-size:1.05rem}
+
+/* LOGO (anti-stretch + mai mare) */
+.hdr .logo{height:var(--logoH-desktop);width:auto;object-fit:contain;border-radius:10px;filter:drop-shadow(0 1px 0 rgba(0,0,0,.25))}
+.ftr .logo{height:var(--logoH-footer);width:auto;object-fit:contain;border-radius:10px;opacity:.98}
+
+/* BURGER – apare DOAR pe mobil */
+.burger{display:none;background:transparent;border:0;cursor:pointer}
+.burger span,
+.burger span::before,.burger span::after{
+  display:block;position:relative;width:18px;height:2px;background:#fff;border-radius:2px;transition:all .25s ease}
+.burger span::before{content:"";position:absolute;left:0;top:-6px}
+.burger span::after{content:"";position:absolute;left:0;top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+/* =========================================================
+   2) HERO
+   ========================================================= */
+.hero.full{position:relative;min-height:100dvh;display:grid;place-items:center;overflow:hidden}
+.hero-bg .blob{position:absolute;width:580px;height:580px;filter:blur(60px);opacity:.33;border-radius:50%}
+.hero-bg .b1{background:radial-gradient(circle at 30% 30%,var(--violet),transparent 60%);left:-120px;top:-120px;animation:f 16s linear infinite alternate}
+.hero-bg .b2{background:radial-gradient(circle at 70% 70%,var(--cyan),transparent 60%);right:-140px;bottom:-160px;animation:f 18s linear infinite alternate-reverse}
+.hero-bg .grid{position:absolute;inset:-20% -10%;
+  background:
+   radial-gradient(ellipse at 50% 0%, rgba(199,255,47,.10), transparent 60%),
+   repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 40px),
+   repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 40px);
+  mask-image:radial-gradient(circle at 50% 40%, rgba(0,0,0,.9) 0, transparent 70%)}
+@keyframes f{to{transform:translateY(-20px) scale(1.05)}}
+.hero-inner{position:relative;z-index:1;text-align:center;padding:6vh 0 10vh}
+.gradient{background:linear-gradient(90deg,var(--lime),var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 8s linear infinite}
+@keyframes shine{from{background-position:0% 50%}to{background-position:200% 50%}}
+.hero .sub{opacity:.9;font-weight:600}
+.hero p{max-width:720px;margin-inline:auto;opacity:.9}
+.cta-row{display:flex;gap:.8rem;margin:1.1rem 0 1.4rem;justify-content:center;flex-wrap:wrap}
+.trust{display:flex;gap:1rem;padding:0;list-style:none;justify-content:center;flex-wrap:wrap;color:var(--subtle)}
+.scrollhint{display:inline-flex;gap:.4rem;align-items:center;margin-top:10px;opacity:.85}
+
+/* =========================================================
+   3) SERVICII
+   ========================================================= */
+.services{padding:48px 0 56px}
+.section-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.filters{display:flex;gap:.5rem;align-items:center;overflow:auto;padding-bottom:2px}
+.filters::-webkit-scrollbar{height:6px}
+.chip{padding:.45rem .75rem;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);white-space:nowrap}
+.chip.active,.chip:hover{background:linear-gradient(135deg,var(--lime),var(--violet));color:#081018;border-color:transparent}
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+.card .icon{font-size:26px;background:linear-gradient(135deg,var(--lime),var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* =========================================================
+   4) GALERIE
+   ========================================================= */
+.grid-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.grid-gallery .tile{position:relative;display:block;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#0f0f1d}
+.grid-gallery img{width:100%;height:100%;object-fit:cover}
+.play-badge{position:absolute;inset:auto auto 10px 10px;background:linear-gradient(135deg,var(--violet),var(--lime));border-radius:999px;width:44px;height:44px;display:grid;place-items:center;color:#051018}
+
+/* =========================================================
+   5) TESTIMONIALE
+   ========================================================= */
+.testimonials{background:radial-gradient(800px 400px at 85% 15%, rgba(155,92,255,.15), transparent);padding:56px 0}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px}
+.tmeta{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.tmeta img{width:48px;height:48px;border-radius:50%}
+.tcard .stars{letter-spacing:2px;background:linear-gradient(90deg,var(--lime),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
+
+/* =========================================================
+   6) PAGINI / CONTACT
+   ========================================================= */
+.page-hero{padding:48px 0 10px}
+.service{padding:24px 0}
+.service-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center}
+.bullets{padding-left:1.1rem}.bullets li{margin:.3rem 0}
+.contact-only{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;padding-bottom:56px}
+.info{display:grid;gap:14px}
+.ibox{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:flex-start;background:rgba(255,255,255,.06);padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+.ibox i{font-size:22px;color:#c7ff2f}
+.map iframe{width:100%;height:300px;border:0;border-radius:14px}
+.fgrid .contact a,.ibox a{word-break:break-word;overflow-wrap:anywhere}
+
+/* =========================================================
+   FOOTER (card-style) — layout clasic + text/underline gradient
+   ========================================================= */
+
+/* container + grilă */
+.ftr{
+  border-top:1px solid rgba(255,255,255,.06);
+  background:rgba(0,0,0,.25);
+  margin-top:36px;
+  padding:22px 0 14px;
+}
+.fgrid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:16px;
+  align-items:start;
+}
+
+/* carduri */
+.fcard{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:14px;
+}
+.fgrid h4{ margin:.2rem 0 .4rem }
+.fgrid ul{ list-style:none; margin:0; padding:0 }
+.fgrid li{ margin:.35rem 0 }
+
+/* linkuri: text gradient + underline gradient la hover/focus */
+.fgrid a{
+  position:relative;
+  color:var(--text);
+  text-decoration:none;
+  transition:color .25s ease;
+}
+.fgrid a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-2px;
+  height:2px; border-radius:2px;
+  background:linear-gradient(90deg,var(--lime),var(--cyan),var(--violet));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .25s ease;
+}
+.fgrid a:hover,
+.fgrid a:focus-visible{
+  color:transparent;
+  background-image:linear-gradient(90deg,var(--lime),var(--cyan),var(--violet));
+  -webkit-background-clip:text; background-clip:text;
+}
+.fgrid a:hover::after,
+.fgrid a:focus-visible::after{
+  transform:scaleX(1);
+}
+
+/* cardul din stânga: totul centrat */
+.fgrid > .fcard:first-child{
+  text-align:center;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:10px;
+}
+.fgrid > .fcard:first-child .brand-footer{
+  width:100%;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:12px;
+}
+.ftr .logo{ height:var(--logoH-footer); width:auto; display:block }
+.fgrid > .fcard:first-child p{ max-width:60ch }
+
+/* butoane social (dacă sunt) */
+.socials a{
+  display:inline-flex; width:36px; height:36px;
+  border-radius:10px; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  margin-right:.4rem;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.socials a:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(0,0,0,.28);
+}
+
+
+/* copy */
+.copy{ opacity:.7; font-size:.9rem; text-align:center; margin-top:12px }
+
+/* responsive */
+@media (max-width:680px){
+  .fgrid{ grid-template-columns:1fr; gap:14px }
+}
+
+
+
+/* =========================================================
+   8) ANIMAȚII & LIGHTBOX
+   ========================================================= */
+[data-animate]{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+[data-animate].in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lightbox-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.lightbox-backdrop.active{display:flex}
+.lightbox-content{max-width:95vw;max-height:85vh}
+.lightbox-content iframe{width:min(960px,95vw);height:min(540px,60vh);border:0;border-radius:12px}
+
+/* ===== Lightbox – imagine & video (pop-out) ===== */
+.lightbox-backdrop{
+  position:fixed; inset:0; z-index:1000;
+  display:none; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.86); backdrop-filter:blur(2px);
+  padding:16px;
+}
+.lightbox-backdrop.active{ display:flex }
+
+.lightbox-shell{
+  position:relative; max-width:95vw; max-height:85vh;
+  border-radius:14px; overflow:hidden; background:#000;
+  animation:lbPop .22s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+}
+@keyframes lbPop{ from{transform:scale(.96); opacity:0} to{transform:none; opacity:1} }
+
+.lightbox-media{ display:block; width:auto; height:auto; max-width:95vw; max-height:85vh; object-fit:contain; }
+.lightbox-shell > iframe.lightbox-media{ width:min(960px,95vw); height:min(540px,70vh); border:0 }
+
+/* Controls (touch-friendly) */
+.lb-close, .lb-prev, .lb-next{
+  position:absolute; z-index:2; cursor:pointer; user-select:none;
+  width:44px; height:44px; border-radius:12px;
+  display:grid; place-items:center; border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.35); color:#fff; font-size:20px;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.lb-close{ top:10px; right:10px }
+.lb-prev{ left:10px; top:50%; transform:translateY(-50%) }
+.lb-next{ right:10px; top:50%; transform:translateY(-50%) }
+.lb-close:hover, .lb-prev:hover, .lb-next:hover{ background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.4) }
+
+/* Paging badge (opțional) */
+.lb-count{
+  position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
+  font:600 12px/1 Poppins,system-ui,sans-serif; color:#fff;
+  background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25);
+  padding:.4rem .6rem; border-radius:999px;
+}
+
+/* Siguranță mobil */
+@media (max-width:680px){
+  .lb-prev, .lb-next{ width:40px; height:40px }
+  .lightbox-shell{ max-height:78vh }
+}
+
+
+/* =========================================================
+   9) RESPONSIVE / MOBILE POLISH
+   ========================================================= */
+@media (max-width:980px){
+  .nav-cta .btn.cta{display:none}          /* CTA intră în flyout */
+  .burger{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 4px 14px rgba(0,0,0,.25)}
+  .menu{display:none}
+  .menu.flyout{
+    display:flex;flex-direction:column;align-items:stretch;
+    position:fixed;right:10px;top:64px;width:min(84vw,340px);
+    padding:12px;gap:.4rem;background:rgba(18,18,40,.96);
+    backdrop-filter:blur(6px) saturate(110%);border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.45);z-index:100;
+    max-height:calc(100dvh - 84px);overflow:auto}
+  .menu.flyout a{display:block;text-align:center;padding:.85rem .7rem;font-weight:600;border-radius:12px}
+  .menu.flyout a:not(.btn):hover{background:rgba(255,255,255,.06)}
+  .menu.flyout .btn.cta{margin-top:.3rem;width:100%}
+  body.nav-open{overflow:hidden;overscroll-behavior:none}
+  .hdr .logo{height:var(--logoH-tablet)}
+}
+@media (max-width:680px){
+  .nav{grid-template-columns:auto 1fr auto}
+  .hdr .logo{height:var(--logoH-mobile)}
+  .tgrid{grid-template-columns:1fr}
+  .service-grid,.contact-only{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr;gap:14px}
+  /* Galerie mai „curată” pe mobil */
+  .grid-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .grid-gallery .tile{aspect-ratio:1/1}
+}
+/* =============== Ultra-responsive + no horizontal overflow =============== */
+
+/* 1) Gutter adaptiv + safe-area (iOS notch) */
+:root{ --gutter: clamp(12px, 4vw, 22px); }
+
+html, body{ max-width:100%; overflow-x:hidden; }
+
+body{
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Container cu padding adaptiv (înlocuiește .container existentă) */
+.container{
+  max-width:1120px;
+  width:100%;
+  margin-inline:auto;
+  padding-inline: calc(var(--gutter) + env(safe-area-inset-left))
+                 calc(var(--gutter) + env(safe-area-inset-right));
+}
+
+/* 2) Hero pe înălțime „reală” pe mobile (fără tăieturi) */
+.hero.full{
+  min-height: 100svh;                /* iOS/Android modern */
+  min-height: 100dvh;                 /* fallback */
+}
+.hero-inner{ padding-inline: var(--gutter); }
+
+/* grid-ul animat din hero să nu creeze overflow */
+.hero-bg .grid{ inset: -12% -6% !important; }
+
+/* 3) Butoane / chip-uri – spacing mai aerisit pe mobil */
+.cta-row{ row-gap:.6rem; column-gap:.6rem; }
+.btn.big{ min-width:min(46%, 320px); }          /* nu se ating pe mobil */
+.filters{ gap:.45rem; padding-bottom:4px; margin-top:6px; }
+.chip{ white-space:nowrap; }
+
+/* 4) Carduri servicii – colaps progresiv fără overflow */
+.card-grid{ grid-template-columns:repeat(4,1fr); gap:16px; }
+@media (max-width:1024px){ .card-grid{ grid-template-columns:repeat(3,1fr) } }
+@media (max-width:900px) { .card-grid{ grid-template-columns:repeat(2,1fr); gap:12px } }
+@media (max-width:560px){ .card-grid{ grid-template-columns:1fr; gap:10px } }
+
+/* 5) Galerie: grilă „fluidă” + imagini încadrate perfect */
+.grid-gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px; }
+@media (max-width:680px){ .grid-gallery{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px } }
+@media (max-width:520px){ .grid-gallery{ grid-template-columns:1fr; } }
+
+.grid-gallery .tile{ position:relative; display:block; border-radius:12px; overflow:hidden; background:#0f0f1d; }
+.grid-gallery img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* badge play rămâne în limite și pe ecrane mici */
+.play-badge{ transform:translateZ(0); }
+
+/* 6) Footer – spațiu respirabil pe mobil */
+@media (max-width:680px){
+  .fgrid{ grid-template-columns:1fr; gap:14px }
+  .brand-footer{ padding-inline: var(--gutter); }
+}
+
+/* 7) Ultima linie de apărare împotriva overflow-ului accidental din copii */
+.container, .services, .page-hero, .contact-only, .testimonials, .grid-gallery{
+  overflow-x: clip;   /* moderne; previne bară orizontală */
+}
+
+
+/* fix pentru comutare telefon-pc*/
+@media (min-width: 981px){
+  .menu .btn.cta{ display:none !important; }
+}

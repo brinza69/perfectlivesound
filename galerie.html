@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <!-- Charset + viewport -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ==== Titlu + descriere (SERP) ==== -->
+  <title>Galerie · Perfect Live Sound</title>
+  <meta name="description" content="Galerie foto & video cu proiecte Perfect Live Sound: nuntă, petrecere privată și zilele comunei." />
+
+  <!-- ==== Indexare (robots) ==== -->
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://www.perfectlivesound.com/galerie.html" />
+
+  <!-- ==== Open Graph (Facebook / social) ==== -->
+  <meta property="og:title" content="Galerie · Perfect Live Sound" />
+  <meta property="og:description" content="Vezi proiectele noastre în imagini și video." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.perfectlivesound.com/galerie.html" />
+  <meta property="og:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
+  <meta property="og:image:alt" content="Perfect Live Sound – galerie foto & video din evenimente reale" />
+  <meta property="og:site_name" content="Perfect Live Sound" />
+  <meta property="og:locale" content="ro_RO" />
+
+  <!-- ==== Twitter Card ==== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie · Perfect Live Sound" />
+  <meta name="twitter:description" content="Vezi proiectele noastre în imagini și video." />
+  <meta name="twitter:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
+
+  <!-- PWA / favicon / theming -->
+  <meta name="theme-color" content="#0c0b17" />
+  <link rel="icon" href="assets/img/favicon.png" />
+
+  <!-- Font + CSS global -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ==== Breadcrumb (ajută indexarea paginilor interne) ==== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Acasă",   "item": "https://www.perfectlivesound.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Galerie", "item": "https://www.perfectlivesound.com/galerie.html" }
+    ]
+  }
+  </script>
+
+  <!-- CSS specific galeriei + lightbox -->
+  <style>
+    /* =========================================================
+       Galerie — layout fluid + lightbox
+       (restul stilurilor globale este în assets/css/style.css)
+       ========================================================= */
+    .gallery-hero{ padding:36px 0 6px }
+    .gallery-hero p{ opacity:.9; max-width:68ch; margin:.25rem 0 12px }
+
+    /* Grilă responsivă fluidă */
+    .imggrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:12px;
+    }
+    @media (min-width:1280px){
+      .imggrid{ grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px }
+    }
+    .imggrid .tile{
+      position:relative; display:block; overflow:hidden;
+      border-radius:16px; background:#0f0f1d; box-shadow:0 10px 26px rgba(0,0,0,.28);
+      transition:transform .28s ease, box-shadow .28s ease, filter .28s ease;
+      isolation:isolate;
+    }
+    .imggrid .tile img{
+      display:block;
+      width:100%;
+      height:auto;             /* important: nu 100% */
+      aspect-ratio:4/3;        /* rânduri uniforme */
+      object-fit:cover;        /* încadrat frumos */
+      transition:transform .35s ease, filter .35s ease;
+    }
+    .imggrid .tile:hover{ transform:translateY(-3px); box-shadow:0 18px 38px rgba(0,0,0,.42); filter:saturate(1.06) }
+    .imggrid .tile:hover img{ transform:scale(1.03) }
+
+    /* Lightbox */
+    .lightbox{ position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index:1000; padding:16px; backdrop-filter:blur(2px) }
+    .lightbox.active{ display:flex }
+    .lb-frame{
+      position:relative; width:min(1200px,96vw); height:min(82vh,96vh);
+      border-radius:16px; overflow:hidden; background:#000;
+      box-shadow:0 20px 60px rgba(0,0,0,.55)
+    }
+    .lb-media{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transform:scale(.985); transition:opacity .25s ease, transform .25s ease; background:#000 }
+    .lb-media.show{ opacity:1; transform:scale(1) }
+
+    .lb-close,.lb-nav{
+      position:absolute; z-index:7; display:grid; place-items:center;
+      width:46px; height:46px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.35); color:#fff;
+      box-shadow:0 4px 18px rgba(0,0,0,.5);
+      -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px)
+    }
+    .lb-close{ top:10px; right:10px; width:44px; height:44px }
+    .lb-nav{ top:50%; transform:translateY(-50%) }
+    .lb-prev{ left:10px } .lb-next{ right:10px }
+    .lb-close svg, .lb-nav svg{ width:18px; height:18px; fill:#fff }
+
+    /* Counter vizibil pe orice fundal; ascuns când e o singură poză */
+    .lb-counter{
+      position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+      z-index:6; padding:.45rem .7rem;
+      font:800 12px/1 Poppins,system-ui,sans-serif; letter-spacing:.4px; color:#fff;
+      background:rgba(0,0,0,.72);
+      border:1px solid rgba(255,255,255,.35); border-radius:999px;
+      box-shadow:0 6px 18px rgba(0,0,0,.55), inset 0 0 0 1px rgba(0,0,0,.25);
+      text-shadow:0 1px 0 rgba(0,0,0,.9);
+      -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
+    }
+
+    @media(max-width:560px){ .lb-frame{ height:72vh } }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Sari la conținut</a>
+
+  <!-- =========================
+       HEADER (global – stil în style.css)
+       ========================= -->
+  <header class="hdr" role="banner">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Perfect Live Sound">
+        <img src="assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
+        <span class="wordmark">Perfect Live Sound</span>
+      </a>
+      <nav class="menu" id="nav" aria-label="Meniu principal">
+        <a href="index.html">Acasă</a>
+        <a href="servicii.html">Servicii</a>
+        <a href="galerie.html" aria-current="page">Galerie</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn cta">Solicită ofertă</a>
+        <button class="burger" aria-label="Meniu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="gallery-hero">
+      <h1>Galeria noastră</h1>
+      <p>Cadre reale din proiecte: <strong>nuntă</strong>, <strong>petrecere privată</strong> și <strong>zilele comunei</strong>. Dă click pentru vizualizare full și navighează cu săgețile.</p>
+    </section>
+
+    <section aria-label="Galerie media">
+      <div class="imggrid" id="imgGrid">
+        <!-- ===== Imagini (se văd direct în grid și se deschid în lightbox) ===== -->
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-ecran-led-lumini-boxe-fbt-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-ecran-led-lumini-boxe-fbt-perfect-live-sound.webp"
+               alt="Scenă eveniment cu ecran LED mare, lumini profesionale pe schelă și boxe FBT" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-eveniment-lumini-moving-heads-boxe-pa-ecran-led-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-eveniment-lumini-moving-heads-boxe-pa-ecran-led-perfect-live-sound.webp"
+               alt="Scenă completă cu sistem PA, schelă de lumini moving heads și ecran LED pentru eveniment" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/sonorizare-formatie-live-eveniment-mixer-digital-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/sonorizare-formatie-live-eveniment-mixer-digital-perfect-live-sound.webp"
+               alt="Mixer digital și formație live în timpul sonorizării unui eveniment" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/sonorizare-formatie-live-scena-lumini-led-boxe-subwoofere-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/sonorizare-formatie-live-scena-lumini-led-boxe-subwoofere-perfect-live-sound.webp"
+               alt="Setup scenă complet pentru formație live cu subwoofere, boxe și ecran LED" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/sonorizare-orchestra-scena-lumini-led-stele-boxe-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/sonorizare-orchestra-scena-lumini-led-stele-boxe-perfect-live-sound.webp"
+               alt="Sonorizare scenă pentru orchestră cu perdea de lumini led tip stele și boxe profesionale" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/sonorizare-restaurant-crama-muzica-live-boxe-profesionale-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/sonorizare-restaurant-crama-muzica-live-boxe-profesionale-perfect-live-sound.webp"
+               alt="Sistem de sunet profesional instalat într-o cramă sau restaurant pentru muzică live" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-botez-elena-sofia-lumini-sonorizare-pa-ecran-led-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-botez-elena-sofia-lumini-sonorizare-pa-ecran-led-perfect-live-sound.webp"
+               alt="Scenă botez Elena Sofia cu lumini ambientale, sistem PA complet și ecran LED" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-botez-lumini-colorate-sonorizare-ecran-led-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-botez-lumini-colorate-sonorizare-ecran-led-perfect-live-sound.webp"
+               alt="Scenă botez cu lumini ambientale colorate (verde/galben), sistem PA și ecran LED personalizat" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/ziua-comunei-scena-lumini-laser-formatie-hora-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/ziua-comunei-scena-lumini-laser-formatie-hora-perfect-live-sound.webp"
+               alt="Eveniment Ziua Comunei în aer liber cu scenă, lumini laser, formație live și horă" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/public-hora-ziua-comunei-lumini-verzi-scena-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/public-hora-ziua-comunei-lumini-verzi-scena-perfect-live-sound.webp"
+               alt="Public dansând hora la Ziua Comunei, cu lumini verzi laser și scenă în fundal" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/formatie-live-scena-ecrane-led-verticale-sonorizare-nunta-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/formatie-live-scena-ecrane-led-verticale-sonorizare-nunta-perfect-live-sound.webp"
+               alt="Formație live cântând pe scenă cu ecrane LED verticale, sistem PA și lumini ambientale la nuntă/eveniment" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-ecran-led-vizualizari-sistem-pa-lumini-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-ecran-led-vizualizari-sistem-pa-lumini-perfect-live-sound.webp"
+               alt="Scenă eveniment cu ecran LED mare afișând vizualizări abstracte, sistem PA și schelă de lumini" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-ecran-led-lumini-podea-sonorizare-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-ecran-led-lumini-podea-sonorizare-perfect-live-sound.webp"
+               alt="Scenă eveniment cu ecran LED afișând vizualizări colorate, sistem PA și efecte de lumini pe podea" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-exterior-montaj-zilele-comunei-sonorizare-ecran-led-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-exterior-montaj-zilele-comunei-sonorizare-ecran-led-perfect-live-sound.webp"
+               alt="Montaj scenă exterioară acoperită pentru Zilele Comunei, cu sistem PA, ecran LED și lumini" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/regie-sunet-mixer-digital-behringer-eveniment-lumini-stele-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/regie-sunet-mixer-digital-behringer-eveniment-lumini-stele-perfect-live-sound.webp"
+               alt="Regie sunet cu mixer digital Behringer la eveniment, cu lumini de tip perdea de stele în fundal" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/scena-ecran-led-flacari-ecrane-verticale-sistem-pa-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/scena-ecran-led-flacari-ecrane-verticale-sistem-pa-perfect-live-sound.webp"
+               alt="Scenă eveniment cu ecran LED central și ecrane verticale afișând vizualizări cu flăcări, plus sistem PA" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/formatie-live-scena-ecrane-led-verticale-traditionale-sonorizare-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/formatie-live-scena-ecrane-led-verticale-traditionale-sonorizare-perfect-live-sound.webp"
+               alt="Formație live cu vioară și acordeon pe scenă, cu ecrane LED verticale afișând motive tradiționale și sistem PA" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/setup-scena-cort-eveniment-ecran-led-lumini-pa-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/setup-scena-cort-eveniment-ecran-led-lumini-pa-perfect-live-sound.webp"
+               alt="Setup scenă eveniment în cort cu ecran LED oprit, schelă de lumini și sistem PA complet" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/dj-setup-booth-lumini-sonorizare-ev-sala-eveniment-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/dj-setup-booth-lumini-sonorizare-ev-sala-eveniment-perfect-live-sound.webp"
+               alt="DJ setup cu booth luminat, sistem PA Electro-Voice (EV) și schelă de lumini moving heads într-o sală elegantă de evenimente" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/formatie-live-korg-acordeon-saxofon-scena-ecrane-led-verticale-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/formatie-live-korg-acordeon-saxofon-scena-ecrane-led-verticale-perfect-live-sound.webp"
+               alt="Formație live cu clape Korg, acordeon și saxofon cântând pe scenă cu ecrane LED verticale și sonorizare profesională" decoding="async">
+        </a>
+
+        <a class="tile" data-type="image" href="assets/poze_gallery/hora-dans-petrecere-nunta-ring-lumini-sonorizare-perfect-live-sound.webp">
+          <img loading="lazy" src="assets/poze_gallery/hora-dans-petrecere-nunta-ring-lumini-sonorizare-perfect-live-sound.webp"
+               alt="Invitați dansând hora pe ringul de dans la nuntă/petrecere, cu lumini ambientale și scenă în fundal" decoding="async">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Previzualizare media">
+    <div class="lb-frame" id="lbFrame">
+      <button class="lb-close" id="lbClose" aria-label="Închide">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 4.8L12 10.6l5.8-5.8 1.4 1.4L13.4 12l5.8 5.8-1.4 1.4L12 13.4 6.2 19.2 4.8 17.8 10.6 12 4.8 6.2 6.2 4.8z"/></svg>
+      </button>
+      <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 19.4L8.9 12.9a1 1 0 010-1.4l6.5-6.5 1.4 1.4L11.7 12l5.1 5.1-1.4 1.3z"/></svg>
+      </button>
+      <button class="lb-nav lb-next" id="lbNext" aria-label="Următor">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 4.6l6.5 6.5a1 1 0 010 1.4l-6.5 6.5-1.4-1.4L12.3 12 7.2 6 8.6 4.6z"/></svg>
+      </button>
+      <div class="lb-counter" id="lbCounter">1/1</div>
+    </div>
+  </div>
+
+  <!-- =========================
+       FOOTER (global)
+       ========================= -->
+  <footer class="ftr" role="contentinfo">
+    <div class="container fgrid">
+      <section class="fcard brand-footer">
+        <img src="assets/img/logo.png" class="logo" alt="Perfect Live Sound" />
+        <span class="wordmark">Perfect Live Sound</span>
+        <p>Sunet, lumini și echipamente audio-video pentru evenimente memorabile.</p>
+        <div class="socials one">
+          <a class="fb-btn" href="https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO" target="_blank" rel="noopener" aria-label="Facebook · Perfect Live Sound" title="Urmărește-ne pe Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.48 17.52 2 12 2S2 6.48 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H7.9V12.06h2.54V9.86c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.78l-.44 2.91h-2.34V22c4.78-.81 8.44-4.95 8.44-9.94Z"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="fcard" aria-label="Navigație secundară">
+        <h4>Pagini</h4>
+        <ul>
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="servicii.html">Servicii</a></li>
+          <li><a href="galerie.html" aria-current="page">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </section>
+
+      <section class="fcard">
+        <h4>Contact</h4>
+        <ul class="contact">
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+40799054274">+40 799 054 274</a></li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Voinesti, Dambovita</li>
+        </ul>
+      </section>
+    </div>
+    <div class="container copy">© 2025 Perfect Live Sound • Toate drepturile rezervate</div>
+  </footer>
+
+  <!-- Iconițe + JS global -->
+  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
+  <script defer src="assets/js/app.js"></script>
+
+  <script>
+  /* =========================================================
+     Lightbox cu prev/next + counter + swipe mobil
+     ========================================================= */
+  (function(){
+    const grid   = document.getElementById('imgGrid');
+    const lb     = document.getElementById('lightbox');
+    const frame  = document.getElementById('lbFrame');
+    const closeB = document.getElementById('lbClose');
+    const prevB  = document.getElementById('lbPrev');
+    const nextB  = document.getElementById('lbNext');
+    const counter= document.getElementById('lbCounter');
+
+    let list = [], idx = 0;
+
+    function visibleTiles(){ return Array.from(grid.querySelectorAll('a.tile')); }
+    function refreshList(){
+      list = visibleTiles().map(a=>({
+        href:a.getAttribute('href'),
+        type:a.dataset.type||'image',
+        alt:a.querySelector('img')?.alt||'Previzualizare',
+        el:a
+      }));
+    }
+    function setCounter(){
+      if(!list.length){ counter.hidden = true; return; }
+      counter.textContent = (idx+1) + '/' + list.length;
+      counter.hidden = list.length < 2; // ascunde când e o singură imagine
+    }
+
+    function mountMedia(item){
+      frame.querySelectorAll('.lb-media').forEach(n=>n.remove());
+      let node;
+      if(item.type==='video'){
+        node = document.createElement('iframe');
+        node.className='lb-media';
+        node.src = item.href + (item.href.includes('?')?'&':'?') + 'autoplay=1&rel=0';
+        node.allow = 'autoplay; encrypted-media; picture-in-picture';
+        node.allowFullscreen = true;
+        requestAnimationFrame(()=>node.classList.add('show'));
+      } else {
+        node = document.createElement('img');
+        node.className='lb-media';
+        node.alt = item.alt;
+        node.onload = ()=> node.classList.add('show');
+        node.src = item.href;
+      }
+      frame.appendChild(node);
+
+      // Preload vecini
+      const prev = list[(idx-1+list.length)%list.length];
+      const next = list[(idx+1)%list.length];
+      [prev,next].forEach(it=>{ if(it && it.type==='image'){ const i = new Image(); i.src = it.href; } });
+
+      setCounter();
+    }
+    function openAt(i){ refreshList(); idx=i; mountMedia(list[idx]); lb.classList.add('active'); document.body.style.overflow='hidden'; }
+    function close(){ lb.classList.remove('active'); document.body.style.overflow=''; frame.querySelectorAll('.lb-media').forEach(n=>n.remove()); }
+    function go(d){ idx=(idx+d+list.length)%list.length; mountMedia(list[idx]); }
+
+    grid.addEventListener('click', e=>{
+      const a = e.target.closest('a.tile'); if(!a) return;
+      e.preventDefault();
+      const tiles = visibleTiles();
+      openAt(tiles.indexOf(a));
+    });
+
+    closeB.addEventListener('click', close);
+    lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+    prevB.addEventListener('click', ()=>go(-1));
+    nextB.addEventListener('click', ()=>go(1));
+    document.addEventListener('keydown', e=>{
+      if(!lb.classList.contains('active')) return;
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft') go(-1);
+      if(e.key==='ArrowRight') go(1);
+    });
+
+    // Swipe mobil
+    let sx=0, sy=0;
+    lb.addEventListener('touchstart', e=>{sx=e.touches[0].clientX; sy=e.touches[0].clientY},{passive:true});
+    lb.addEventListener('touchend', e=>{
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if(Math.abs(dx)>60 && Math.abs(dy)<80){ go(dx>0?-1:1); }
+    },{passive:true});
+  })();
+  </script>
+</body>
+</html>

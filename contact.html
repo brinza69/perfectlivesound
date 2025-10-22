@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Contact · Perfect Live Sound</title>
+  <meta name="description" content="Contactează Perfect Live Sound pentru o ofertă rapidă și personalizată: telefon, email, adresa Voinesti, Dambovita și hartă." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://www.perfectlivesound.com/contact.html" />
+
+  <!-- OG / Twitter -->
+  <meta property="og:title" content="Contact · Perfect Live Sound" />
+  <meta property="og:description" content="Scrie-ne sau sună-ne pentru detalii și oferte. Răspundem rapid." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.perfectlivesound.com/contact.html" />
+  <meta property="og:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
+  <meta property="og:image:alt" content="Perfect Live Sound — sunet, lumini și DJ pentru evenimente" />
+  <meta property="og:site_name" content="Perfect Live Sound" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact · Perfect Live Sound" />
+  <meta name="twitter:description" content="Telefon, email, adresa Voinesti, Dambovita – ia legătura cu noi pentru o ofertă." />
+  <meta name="twitter:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
+
+  <meta name="theme-color" content="#0c0b17" />
+  <link rel="icon" href="assets/img/favicon.png" />
+
+  <!-- Font + CSS global -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
+  <script defer src="assets/js/app.js"></script>
+
+  <!-- Schema.org (date consistente cu footerul) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "@id":"https://www.perfectlivesound.com/#business",
+    "name":"Perfect Live Sound",
+    "url":"https://www.perfectlivesound.com/",
+    "telephone":"+40799054274",
+    "email":"perfectlivesound.booking@gmail.com",
+    "image":"https://www.perfectlivesound.com/assets/img/logo.png",
+    "address":{"@type":"PostalAddress","addressLocality":"Voinesti","addressRegion":"Dambovita","addressCountry":"RO"},
+    "sameAs":["https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO"]
+  }
+  </script>
+
+  <!-- Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Acasă","item":"https://www.perfectlivesound.com/"},
+      {"@type":"ListItem","position":2,"name":"Contact","item":"https://www.perfectlivesound.com/contact.html"}
+    ]
+  }
+  </script>
+
+  <!-- ==== FIX: stiluri scoped (NU ating alte pagini) ==== -->
+  <style>
+    .contact-page{ padding-block: 20px 28px; }
+
+    /* Grilă stabilă: info în stânga, hartă în dreapta (pe desktop) */
+    .contact-page .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (min-width: 980px){
+      .contact-page .contact-grid{
+        grid-template-columns: 470px 1fr; /* stânga fix, dreapta fluid */
+        gap: 24px;
+      }
+    }
+
+    /* Carduri info */
+    .contact-page .ibox{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px 16px; border:1px solid rgba(255,255,255,.08);
+      border-radius:12px; background:rgba(255,255,255,.04);
+    }
+    .contact-page .ibox i{ margin-top:2px }
+    .contact-page .call-btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.9rem 1.2rem; border-radius:12px; width:100%;
+      text-align:center; box-shadow:0 10px 22px rgba(0,0,0,.28); margin-top:8px;
+      transition:transform .2s ease;
+    }
+    @media (min-width:680px){ .contact-page .call-btn{ width:auto } }
+    .contact-page .call-btn:hover{ transform: translateY(-1px); }
+
+    /* FIX iFrame: container cu raport + fallback pentru browsere vechi */
+    .contact-page .map-embed{
+      border-radius:12px; overflow:hidden; background:#000; position:relative;
+    }
+    /* metodă modernă (preferată) */
+    @supports (aspect-ratio: 1){
+      .contact-page .map-embed{ aspect-ratio: 16 / 10; }
+      .contact-page .map-embed iframe{ width:100%; height:100%; border:0; display:block; }
+    }
+    /* fallback: padding-hack doar dacă aspect-ratio nu există */
+    @supports not (aspect-ratio: 1){
+      .contact-page .map-embed{ padding-top: 62.5%; } /* ~16:10 */
+      .contact-page .map-embed iframe{
+        position:absolute; inset:0; width:100%; height:100%; border:0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Sari la conținut</a>
+
+  <!-- Header (global) -->
+  <header class="hdr" role="banner">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Perfect Live Sound">
+        <img src="assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
+        <span class="wordmark">Perfect Live Sound</span>
+      </a>
+      <nav class="menu" id="nav" aria-label="Meniu principal">
+        <a href="index.html">Acasă</a>
+        <a href="servicii.html">Servicii</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn cta">Solicită ofertă</a>
+        <button class="burger" aria-label="Meniu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container contact-page" role="main" data-animate>
+    <h1>Contact</h1>
+    <p>Scrie-ne sau sună-ne pentru o ofertă rapidă și personalizată.</p>
+
+    <section class="contact-grid" aria-labelledby="contactInfo">
+      <!-- Col stânga: date contact -->
+      <div>
+        <h2 id="contactInfo" class="visually-hidden">Informații de contact</h2>
+
+        <div class="ibox">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <div>
+            <strong>Telefon</strong><br />
+            <a href="tel:+40799054274">+40 799 054 274</a>
+          </div>
+        </div>
+
+        <div class="ibox">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <div>
+            <strong>Email</strong><br />
+            <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="ibox">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <div>
+            <strong>Adresă</strong><br />
+            Voinesti, Dambovita
+          </div>
+        </div>
+
+        <a class="btn cta call-btn" href="tel:+40799054274">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Sună acum
+        </a>
+      </div>
+
+      <!-- Col dreapta: hartă (iframe fix) -->
+      <div class="map-embed" aria-label="Hartă Perfect Live Sound">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2677.810540398965!2d25.246541399999998!3d45.081666299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2e74e93dd2a2f%3A0x8563a224f6728c64!2sPerfect%20Live%20Sound!5e1!3m2!1sen!2sro!4v1761135734088!5m2!1sen!2sro"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Hartă Perfect Live Sound"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (global) -->
+  <footer class="ftr" role="contentinfo">
+    <div class="container fgrid">
+      <section class="fcard brand-footer">
+        <img src="assets/img/logo.png" class="logo" alt="Perfect Live Sound" />
+        <span class="wordmark">Perfect Live Sound</span>
+        <p>Sunet, lumini și echipamente audio-video pentru evenimente memorabile.</p>
+        <div class="socials one">
+          <a class="fb-btn" href="https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO" target="_blank" rel="noopener" aria-label="Facebook · Perfect Live Sound" title="Urmărește-ne pe Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.06C22 6.48 17.52 2 12 2S2 6.48 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H7.9V12.06h2.54V9.86c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.86h2.78l-.44 2.91h-2.34V22c4.78-.81 8.44-4.95 8.44-9.94Z"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="fcard" aria-label="Navigație secundară">
+        <h4>Pagini</h4>
+        <ul>
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="servicii.html">Servicii</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </section>
+
+      <section class="fcard">
+        <h4>Contact</h4>
+        <ul class="contact">
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+40799054274">+40 799 054 274</a></li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Voinesti, Dambovita</li>
+        </ul>
+      </section>
+    </div>
+    <div class="container copy">© 2025 Perfect Live Sound • Toate drepturile rezervate</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Nu indexa folderele tehnice
+Disallow: /assets/css/
+Disallow: /assets/js/
+
+# Permite imaginile
+Allow: /assets/poze_gallery/
+Allow: /assets/poze_sneak_peek/
+Allow: /assets/poze servicii/
+
+Sitemap: https://www.perfectlivesound.com/sitemap.xml
