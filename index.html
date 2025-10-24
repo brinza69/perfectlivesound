@@ -215,10 +215,10 @@
         display:grid; grid-template-columns:1fr 1.2fr 1fr; grid-template-rows:200px 200px;
         gap:var(--gap-sneak-desktop);
         overflow:visible; mask:none; -webkit-mask-image:none; scroll-snap-type:none; padding:0;
-        grid-template-areas:"a hero b" "c hero d"; /* <— HERO în centru */
+        grid-template-areas:"a hero b" "c hero d";
       }
       .spk-item{ min-width:0; scroll-snap-align:auto }
-      .spk-item:nth-child(1){ grid-area:hero } /* Live (mare) */
+      .spk-item:nth-child(1){ grid-area:hero }
       .spk-item:nth-child(2){ grid-area:a }
       .spk-item:nth-child(3){ grid-area:b }
       .spk-item:nth-child(4){ grid-area:c }
@@ -271,10 +271,8 @@
          HERO
          ========================= -->
     <section class="hero full" data-animate aria-label="Hero video light show">
-      <!-- === ADD: Video background optimizat === -->
-      <video id="heroVid" class="hero-bg" autoplay muted loop playsinline preload="none">
-        <!-- sursa se atașează din JS pentru a evita preîncărcarea inutilă -->
-      </video>
+      <!-- Video background optimizat: DOAR 720p -->
+      <video id="heroVid" class="hero-bg" autoplay muted loop playsinline preload="metadata"></video>
 
       <div class="container hero-inner">
         <h1 class="hero-title" aria-label="365 de zile de sunet perfect pentru fiecare eveniment">
@@ -332,7 +330,7 @@
     </section>
 
     <!-- =========================
-         SNEAK-PEEK GALERIE (cu poza mare pe centru)
+         SNEAK-PEEK GALERIE (poza mare pe centru)
          ========================= -->
     <section class="container spk" aria-labelledby="galTitle" data-animate>
       <div class="spk-head">
@@ -573,20 +571,22 @@
       dbtns.forEach((b,i)=> b.addEventListener('click', ()=> items[i].scrollIntoView({behavior:'smooth', inline:'center'})));
     })();
 
-    /* === ADD: HERO video – atașare sursă optimizată și play robust (iOS safe) === */
+    /* === HERO video – doar 720p MP4, play robust (iOS safe) === */
     (function(){
       const vid = document.getElementById('heroVid'); if(!vid) return;
 
-      // Alege rezoluția după lățimea ecranului
-      const vw = Math.max(screen.width, window.innerWidth || 0);
-      let mp4 = 'assets/video/lights-720.mp4';
-      if (vw <= 480) mp4 = 'assets/video/lights-480.mp4';
-      else if (vw >= 1024) mp4 = 'assets/video/lights-1080.mp4';
+      // Politici autoplay prietenoase
+      vid.setAttribute('muted','');
+      vid.muted = true;
+      vid.playsInline = true;
+
+      // Doar 720p
+      const src = 'assets/video/lights-720.mp4';
 
       function attach(){
         if (vid.dataset.ready) return;
         const s = document.createElement('source');
-        s.src = mp4; s.type = 'video/mp4';
+        s.src = src; s.type = 'video/mp4';
         vid.appendChild(s);
         vid.dataset.ready = '1';
         vid.load();
@@ -596,26 +596,25 @@
         const p = vid.play?.();
         if (p && typeof p.then === 'function') {
           p.then(()=> vid.classList.add('is-visible'))
-           .catch(()=>{/* așteptăm interacțiune pe iOS */});
+           .catch(()=>{/* pornim la prima interacțiune */});
         } else {
           vid.classList.add('is-visible');
         }
       }
 
-      // Lazy-load când HERO intră în viewport
-      const io = new IntersectionObserver((ents)=>{
-        if (ents.some(e=>e.isIntersecting)) {
-          attach(); tryPlay(); io.disconnect();
-        }
-      }, { rootMargin: '0px 0px 200px 0px' });
-      io.observe(vid);
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((ents)=>{
+          if (ents.some(e=>e.isIntersecting)) { attach(); tryPlay(); io.disconnect(); }
+        }, { rootMargin:'0px 0px 200px 0px' });
+        io.observe(vid);
+      } else {
+        attach(); tryPlay();
+      }
 
-      // Fallback: pornește la prima interacțiune dacă autoplay e blocat
-      const kick = ()=>{ attach(); tryPlay(); window.removeEventListener('pointerdown',kick,{passive:true}); };
+      const kick = ()=>{ attach(); tryPlay(); window.removeEventListener('pointerdown', kick, {passive:true}); };
       window.addEventListener('pointerdown', kick, {passive:true});
 
-      // Respectă prefers-reduced-motion: nu mai dăm autoplay
-      const m = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const m = matchMedia('(prefers-reduced-motion: reduce)');
       function apply(){ if(m.matches){ vid.pause(); vid.removeAttribute('autoplay'); } }
       apply(); m.addEventListener?.('change', apply);
     })();
