@@ -1,92 +1,105 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <!-- Charset + viewport -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- ==== Titlu + descriere ==== -->
   <title>Contact · Perfect Live Sound</title>
-  <meta name="description" content="Contactează-ne pentru ofertă personalizată: telefon, email și formular rapid. Răspundem în aceeași zi." />
-
-  <!-- ==== Indexare ==== -->
+  <meta name="description" content="Contactează Perfect Live Sound pentru o ofertă rapidă și personalizată: telefon, email, adresa Voinești, Dâmbovița și hartă." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://www.perfectlivesound.com/contact" />
 
-  <!-- ==== Open Graph ==== -->
+  <!-- OG / Twitter -->
   <meta property="og:title" content="Contact · Perfect Live Sound" />
-  <meta property="og:description" content="Ofertă personalizată pentru evenimentul tău." />
+  <meta property="og:description" content="Scrie-ne sau sună-ne pentru detalii și oferte. Răspundem rapid." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.perfectlivesound.com/contact" />
   <meta property="og:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
-  <meta property="og:image:alt" content="Perfect Live Sound – contactează-ne" />
+  <meta property="og:image:alt" content="Perfect Live Sound — sunet, lumini și DJ pentru evenimente" />
   <meta property="og:site_name" content="Perfect Live Sound" />
   <meta property="og:locale" content="ro_RO" />
-
-  <!-- ==== Twitter ==== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact · Perfect Live Sound" />
-  <meta name="twitter:description" content="Telefon, email și formular de contact." />
+  <meta name="twitter:description" content="Telefon, email, adresa Voinești, Dâmbovița – ia legătura cu noi pentru o ofertă." />
   <meta name="twitter:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
 
-  <!-- PWA / favicon / theming -->
   <meta name="theme-color" content="#0c0b17" />
   <link rel="icon" href="/assets/img/logo.png" />
-  <link rel="manifest" href="/manifest.webmanifest" />
 
   <!-- Font + CSS global -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/style.css" />
+  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/app.js"></script>
 
-  <!-- ==== Breadcrumb ==== -->
+  <!-- Schema.org (date consistente cu footerul) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://www.perfectlivesound.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.perfectlivesound.com/contact" }
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "@id":"https://www.perfectlivesound.com/#business",
+    "name":"Perfect Live Sound",
+    "url":"https://www.perfectlivesound.com/",
+    "telephone":"+40799054274",
+    "email":"perfectlivesound.booking@gmail.com",
+    "image":"https://www.perfectlivesound.com/assets/img/logo.png",
+    "address":{"@type":"PostalAddress","addressLocality":"Voinești","addressRegion":"Dâmbovița","addressCountry":"RO"},
+    "sameAs":["https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO"]
+  }
+  </script>
+
+  <!-- Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Acasă","item":"https://www.perfectlivesound.com/"},
+      {"@type":"ListItem","position":2,"name":"Contact","item":"https://www.perfectlivesound.com/contact"}
     ]
   }
   </script>
 
+  <!-- Stiluri scoped -->
   <style>
-    .contact-wrap{ padding:36px 0 24px }
-    .cgrid{ display:grid; grid-template-columns:1.1fr .9fr; gap:18px }
-    @media(max-width:920px){ .cgrid{ grid-template-columns:1fr } }
-    .card{ padding:20px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08) }
-    .formgrid{ display:grid; gap:10px }
-    .formgrid input,.formgrid textarea{
-      width:100%; padding:.85rem 1rem; border-radius:10px; border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.2); color:#fff; outline:none;
+    .contact-page{ padding-block: 20px 28px }
+    .contact-page .contact-grid{ display:grid; grid-template-columns:1fr; gap:18px; align-items:start }
+    @media (min-width:980px){ .contact-page .contact-grid{ grid-template-columns:470px 1fr; gap:24px } }
+    .contact-page .ibox{ display:flex; gap:12px; align-items:flex-start; padding:14px 16px; border:1px solid rgba(255,255,255,.08); border-radius:12px; background:rgba(255,255,255,.04) }
+    .contact-page .ibox i{ margin-top:2px }
+    .contact-page .call-btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.9rem 1.2rem; border-radius:12px; width:100%; text-align:center; box-shadow:0 10px 22px rgba(0,0,0,.28); margin-top:8px; transition:transform .2s ease }
+    @media (min-width:680px){ .contact-page .call-btn{ width:auto } }
+    .contact-page .call-btn:hover{ transform:translateY(-1px) }
+    .contact-page .map-embed{ border-radius:12px; overflow:hidden; background:#000; position:relative }
+    @supports (aspect-ratio: 1){
+      .contact-page .map-embed{ aspect-ratio:16/10 }
+      .contact-page .map-embed iframe{ width:100%; height:100%; border:0; display:block }
     }
-    .formgrid textarea{ min-height:120px; resize:vertical }
-    .meta li{ margin:.35rem 0 }
-    .meta a{ text-decoration:underline }
-    iframe.map{ width:100%; height:280px; border:0; border-radius:12px }
+    @supports not (aspect-ratio: 1){
+      .contact-page .map-embed{ padding-top:62.5% }
+      .contact-page .map-embed iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
+    }
   </style>
 </head>
 
 <body>
   <a class="skip" href="#main">Sari la conținut</a>
 
-  <!-- ========================= HEADER ========================= -->
+  <!-- Header -->
   <header class="hdr" role="banner">
     <div class="container nav">
       <a class="brand" href="/" aria-label="Perfect Live Sound">
         <img src="/assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
         <span class="wordmark">Perfect Live Sound</span>
       </a>
-
       <nav class="menu" id="nav" aria-label="Meniu principal">
         <a href="/">Acasă</a>
         <a href="/servicii">Servicii</a>
         <a href="/galerie">Galerie</a>
         <a href="/contact" aria-current="page">Contact</a>
       </nav>
-
       <div class="nav-cta">
         <a href="/contact" class="btn cta">Solicită ofertă</a>
         <button class="burger" aria-label="Meniu" aria-expanded="false"><span></span></button>
@@ -94,63 +107,58 @@
     </div>
   </header>
 
-  <main id="main" class="container contact-wrap" role="main">
+  <main id="main" class="container contact-page" role="main" data-animate>
     <h1>Contact</h1>
-    <p style="opacity:.9;max-width:68ch">Spune-ne data, locația și tipul evenimentului. Îți răspundem rapid cu o propunere de pachet.</p>
+    <p>Scrie-ne sau sună-ne pentru o ofertă rapidă și personalizată.</p>
 
-    <div class="cgrid" style="margin-top:12px">
-      <section class="card" aria-label="Formular contact">
-        <h2>Scrie-ne</h2>
-        <form class="formgrid" name="contact" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact">
-          <label>
-            <span class="sr-only">Nume</span>
-            <input type="text" name="nume" placeholder="Nume" required>
-          </label>
-          <label>
-            <span class="sr-only">Email</span>
-            <input type="email" name="email" placeholder="Email" required>
-          </label>
-          <label>
-            <span class="sr-only">Telefon</span>
-            <input type="tel" name="telefon" placeholder="Telefon">
-          </label>
-          <label>
-            <span class="sr-only">Mesaj</span>
-            <textarea name="mesaj" placeholder="Spune-ne despre evenimentul tău (data, locație, nr. persoane)…" required></textarea>
-          </label>
-          <button class="btn cta" type="submit">Trimite mesajul</button>
-        </form>
-      </section>
+    <section class="contact-grid" aria-labelledby="contactInfo">
+      <!-- Col stânga -->
+      <div>
+        <h2 id="contactInfo" class="visually-hidden">Informații de contact</h2>
 
-      <aside class="card" aria-label="Date de contact">
-        <h2>Date utile</h2>
-        <ul class="meta">
-          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+40799054274">+40 799 054 274</a></li>
-          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a></li>
-          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Voinești, Dâmbovița</li>
-          <li><i class="fa-brands fa-facebook" aria-hidden="true"></i> <a href="https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO" rel="noopener" target="_blank">Facebook</a></li>
-        </ul>
-
-        <h3 style="margin-top:12px">Acoperire</h3>
-        <p style="opacity:.9">București · Ploiești · Târgoviște · Sinaia · Pitești</p>
-
-        <!-- Hartă embed opțională (poți înlocui cu locația exactă) -->
-        <div style="margin-top:12px">
-          <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d45432.020!2d25.4!3d45.1!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zVm9pbmVzdGksIERhbcWib3ZpxI1h!5e0!3m2!1sro!2sro!4v1700000000"></iframe>
+        <div class="ibox">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <div>
+            <strong>Telefon</strong><br />
+            <a href="tel:+40799054274">+40 799 054 274</a>
+          </div>
         </div>
-      </aside>
-    </div>
 
-    <section style="padding-top:18px">
-      <h2>Gata de ofertă?</h2>
-      <a class="btn cta" href="tel:+40799054274">Sună acum</a>
-      <a class="btn ghost" href="/galerie" style="margin-left:.5rem">Vezi galeria</a>
+        <div class="ibox">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <div>
+            <strong>Email</strong><br />
+            <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="ibox">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <div>
+            <strong>Adresă</strong><br />
+            Voinești, Dâmbovița
+          </div>
+        </div>
+
+        <a class="btn cta call-btn" href="tel:+40799054274">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Sună acum
+        </a>
+      </div>
+
+      <!-- Col dreapta: hartă -->
+      <div class="map-embed" aria-label="Hartă Perfect Live Sound">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2677.810540398965!2d25.246541399999998!3d45.081666299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2e74e93dd2a2f%3A0x8563a224f6728c64!2sPerfect%20Live%20Sound!5e1!3m2!1sen!2sro!4v1761135734088!5m2!1sen!2sro"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Hartă Perfect Live Sound"
+          allowfullscreen>
+        </iframe>
+      </div>
     </section>
   </main>
 
-  <!-- ========================= FOOTER ========================= -->
+  <!-- Footer -->
   <footer class="ftr" role="contentinfo">
     <div class="container fgrid">
       <section class="fcard brand-footer">
@@ -185,9 +193,5 @@
     </div>
     <div class="container copy">© 2025 Perfect Live Sound • Toate drepturile rezervate</div>
   </footer>
-
-  <!-- Iconițe + JS global -->
-  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
-  <script defer src="/assets/js/app.js"></script>
 </body>
 </html>

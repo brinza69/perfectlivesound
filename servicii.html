@@ -7,7 +7,7 @@
 
   <!-- ==== Titlu + descriere (SERP) ==== -->
   <title>Servicii · Perfect Live Sound</title>
-  <meta name="description" content="Servicii complete: sonorizare profesională, lumini, DJ și ecrane LED pentru nunți, corporate și evenimente publice." />
+  <meta name="description" content="Sonorizare profesională, microfoane wireless, lumini și DJ. Pachete scalabile pentru orice tip de eveniment." />
 
   <!-- ==== Indexare (robots) ==== -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -15,30 +15,33 @@
 
   <!-- ==== Open Graph ==== -->
   <meta property="og:title" content="Servicii · Perfect Live Sound" />
-  <meta property="og:description" content="Sunet, lumini, DJ și ecrane LED pentru orice tip de eveniment." />
+  <meta property="og:description" content="Sonorizare, lumini și DJ — ofertă personalizată." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.perfectlivesound.com/servicii" />
   <meta property="og:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
-  <meta property="og:image:alt" content="Perfect Live Sound – servicii pentru evenimente" />
+  <meta property="og:image:alt" content="Perfect Live Sound – servicii de sonorizare, lumini și DJ" />
   <meta property="og:site_name" content="Perfect Live Sound" />
   <meta property="og:locale" content="ro_RO" />
 
   <!-- ==== Twitter Card ==== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Servicii · Perfect Live Sound" />
-  <meta name="twitter:description" content="Sunet, lumini, DJ și ecrane LED pentru evenimente." />
+  <meta name="twitter:description" content="Sonorizare, lumini și DJ — ofertă personalizată." />
   <meta name="twitter:image" content="https://www.perfectlivesound.com/assets/img/og.jpg" />
 
   <!-- PWA / favicon / theming -->
   <meta name="theme-color" content="#0c0b17" />
   <link rel="icon" href="/assets/img/logo.png" />
-  <link rel="manifest" href="/manifest.webmanifest" />
 
   <!-- Font + CSS global -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <!-- Iconițe + JS global -->
+  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/app.js"></script>
 
   <!-- ==== Breadcrumb ==== -->
   <script type="application/ld+json">
@@ -51,26 +54,36 @@
     ]
   }
   </script>
+
+  <style>
+    /* ===== Stiluri locale (restul în /assets/css/style.css) ===== */
+    .service-grid figure{ margin:0 }
+    .img-rounded{ display:block; width:100%; border-radius:14px; box-shadow:0 10px 26px rgba(0,0,0,.28) }
+    @supports (aspect-ratio: 1){ .img-rounded{ aspect-ratio:16/10; object-fit:cover } }
+    @media (max-width:680px){ .img-rounded{ aspect-ratio:4/3 } }
+    @media (min-width:980px){
+      .service-grid figure{ display:flex; align-items:stretch }
+      .service-grid figure .img-rounded{ height:100%; max-height:520px }
+    }
+  </style>
 </head>
 
 <body>
   <a class="skip" href="#main">Sari la conținut</a>
 
-  <!-- ========================= HEADER ========================= -->
+  <!-- HEADER -->
   <header class="hdr" role="banner">
     <div class="container nav">
       <a class="brand" href="/" aria-label="Perfect Live Sound">
         <img src="/assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
         <span class="wordmark">Perfect Live Sound</span>
       </a>
-
       <nav class="menu" id="nav" aria-label="Meniu principal">
         <a href="/">Acasă</a>
         <a href="/servicii" aria-current="page">Servicii</a>
         <a href="/galerie">Galerie</a>
         <a href="/contact">Contact</a>
       </nav>
-
       <div class="nav-cta">
         <a href="/contact" class="btn cta">Solicită ofertă</a>
         <button class="burger" aria-label="Meniu" aria-expanded="false"><span></span></button>
@@ -78,77 +91,73 @@
     </div>
   </header>
 
-  <main id="main" class="container" role="main">
-    <section class="services" style="padding:36px 0 16px">
+  <main id="main" class="page" role="main">
+    <section class="page-hero container" data-animate>
       <h1>Serviciile noastre</h1>
-      <p style="opacity:.9;max-width:68ch">Configurăm sistemul ideal pentru locația ta: acoperire uniformă, microfoane stabile și light show sincron cu muzica.</p>
+      <p>Acoperim evenimente de la petreceri private la conferințe corporate.</p>
+    </section>
 
-      <div class="card-grid" style="margin-top:14px">
-        <article id="sonorizare" class="card">
-          <i class="fa-solid fa-volume-high icon" aria-hidden="true"></i>
+    <!-- Sonorizare -->
+    <section id="sonorizare" class="service container" data-animate>
+      <div class="service-grid">
+        <div>
           <h2>Sonorizare Profesională</h2>
-          <p>Sisteme PA scalabile (line-array, subwoofere, frontfill), procesare DSP și management feedback.</p>
-          <ul>
-            <li>Behringer / Dynacord / EV / FBT</li>
-            <li>Microfoane wireless handheld & lavalieră</li>
-            <li>Mixere digitale, scene & monitorizare</li>
+          <p>Sisteme line-array / sateliți + subwoofere, mixere digitale, procesare DSP.</p>
+          <ul class="bullets">
+            <li>Microfoane Wireless</li>
+            <li>Boxe active &amp; subwoofere</li>
+            <li>Console digitale, EQ &amp; compresie</li>
+            <li>Tehnicieni la fața locului</li>
           </ul>
-          <a href="/galerie" class="more">Vezi exemple →</a>
-        </article>
-
-        <article id="lumini" class="card">
-          <i class="fa-solid fa-lightbulb icon" aria-hidden="true"></i>
-          <h2>Echipamente Lumini</h2>
-          <p>Moving heads, wash, laser, efecte pe podea și control DMX pentru atmosferă coerentă.</p>
-          <ul>
-            <li>Scene pe schelă, rigging & cablare</li>
-            <li>Control DMX programat pentru show</li>
-            <li>Ambient RGB pentru sală</li>
-          </ul>
-          <a href="/galerie" class="more">Vezi exemple →</a>
-        </article>
-
-        <article id="dj" class="card">
-          <i class="fa-solid fa-headphones icon" aria-hidden="true"></i>
-          <h2>DJ & MC</h2>
-          <p>Selecții dinamice, citire a publicului și MC la microfon pentru momente-cheie.</p>
-          <ul>
-            <li>Playlist personalizat pe gusturi</li>
-            <li>Coordonare cu formații live</li>
-            <li>Pachete pentru nuntă / corporate</li>
-          </ul>
-          <a href="/contact" class="more">Cere ofertă →</a>
-        </article>
-
-        <article id="video" class="card">
-          <i class="fa-solid fa-tv icon" aria-hidden="true"></i>
-          <h2>Ecrane LED & Video</h2>
-          <p>Ecrane LED centrale + verticale pentru vizualuri, grafice personalizate & prompter.</p>
-          <ul>
-            <li>Mapping de text și logo</li>
-            <li>Play-out video live</li>
-            <li>Conținut sincron cu lumini</li>
-          </ul>
-          <a href="/galerie" class="more">Vezi exemple →</a>
-        </article>
+          <a class="btn cta" href="/contact">Solicită ofertă</a>
+        </div>
+        <figure>
+          <!-- păstrat exact path-ul original (folder cu spațiu) -->
+          <img loading="lazy" src="/assets/poze servicii/sonorizare-profesionala-evenimente-live.jpg" alt="Sonorizare profesionistă pentru evenimente live" class="img-rounded">
+        </figure>
       </div>
     </section>
 
-    <section style="padding:20px 0 28px">
-      <h2>De ce noi</h2>
-      <ul class="trust" style="justify-content:flex-start">
-        <li><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Line-array & DSP</li>
-        <li><i class="fa-solid fa-microphone" aria-hidden="true"></i> Wireless stabil</li>
-        <li><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Light show sincron</li>
-      </ul>
-      <div style="margin-top:12px">
-        <a class="btn cta" href="/contact">Solicită ofertă</a>
-        <a class="btn ghost" href="/galerie">Vezi galeria</a>
+    <!-- Lumini -->
+    <section id="lumini" class="service container" data-animate>
+      <div class="service-grid">
+        <div>
+          <h2>Echipamente Lumini</h2>
+          <p>Moving heads, wash, laser, fum greu, scene DMX sincronizate.</p>
+          <ul class="bullets">
+            <li>Light show personalizat</li>
+            <li>Structuri/rigging sigur</li>
+            <li>Ecrane LED la cerere</li>
+          </ul>
+          <a class="btn cta" href="/contact">Solicită ofertă</a>
+        </div>
+        <figure>
+          <img loading="lazy" src="/assets/poze servicii/echipamente-scena-light-show-profesional.jpg" alt="Echipamente de lumini pentru scenă și evenimente" class="img-rounded">
+        </figure>
+      </div>
+    </section>
+
+    <!-- DJ -->
+    <section id="dj" class="service container" data-animate>
+      <div class="service-grid">
+        <div>
+          <h2>DJ Services</h2>
+          <p>DJ cu experiență, playlist-uri adaptate și momente speciale.</p>
+          <ul class="bullets">
+            <li>Playlist personalizat &amp; MC</li>
+            <li>Controlere, mixere, microfoane</li>
+            <li>Setup potrivit locației</li>
+          </ul>
+          <a class="btn cta" href="/contact">Solicită ofertă</a>
+        </div>
+        <figure>
+          <img loading="lazy" src="/assets/poze servicii/dj-profesional-evenimente-private.jpg" alt="DJ pentru evenimente private, cu echipamente profesionale" class="img-rounded">
+        </figure>
       </div>
     </section>
   </main>
 
-  <!-- ========================= FOOTER ========================= -->
+  <!-- FOOTER -->
   <footer class="ftr" role="contentinfo">
     <div class="container fgrid">
       <section class="fcard brand-footer">
@@ -183,9 +192,5 @@
     </div>
     <div class="container copy">© 2025 Perfect Live Sound • Toate drepturile rezervate</div>
   </footer>
-
-  <!-- Iconițe + JS global -->
-  <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
-  <script defer src="/assets/js/app.js"></script>
 </body>
 </html>
