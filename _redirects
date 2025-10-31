@@ -1,0 +1,17 @@
+# ——— Canonical domain + HTTPS ———
+https://www.perfectlivesound.com/*   https://perfectlivesound.com/:splat   301!
+http://perfectlivesound.com/*        https://perfectlivesound.com/:splat   301!
+http://www.perfectlivesound.com/*    https://perfectlivesound.com/:splat   301!
+
+# ——— Rute vechi (.html) -> rute "frumoase" ———
+/galerie.html    /galerie/    301!
+/servicii.html   /servicii/   301!
+/contact.html    /contact/    301!
+
+# (opțional) Trailing slash pentru cele 3 secțiuni dacă se accesează fără /
+/galerie        /galerie/     301!
+/servicii       /servicii/    301!
+/contact        /contact/     301!
+
+# ——— 404 fallback ———
+/*   /404.html   404

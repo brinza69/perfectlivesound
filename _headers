@@ -1,0 +1,46 @@
+# ——— Implicit: toate răspunsurile ———
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  # CSP permisivă cât să nu rupă site-ul (ai inline <script> și Google Fonts / FA / Maps)
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://kit.fontawesome.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.unsplash.com https://images.pexels.com; media-src 'self'; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'
+
+# ——— HTML: fără caching agresiv ———
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/servicii/
+  Cache-Control: no-cache, no-store, must-revalidate
+/galerie/
+  Cache-Control: no-cache, no-store, must-revalidate
+/contact/
+  Cache-Control: no-cache, no-store, must-revalidate
+/404.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# ——— CSS & JS (ne-versionate): cache moderat ———
+/assets/css/*
+  Cache-Control: public, max-age=604800
+/assets/js/*
+  Cache-Control: public, max-age=604800
+
+# ——— Imagini: cache mai lung ———
+/assets/img/*
+  Cache-Control: public, max-age=2592000, immutable
+/assets/poze_gallery/*
+  Cache-Control: public, max-age=2592000, immutable
+/assets/poze servicii/*
+  Cache-Control: public, max-age=2592000, immutable
+
+# ——— Video MP4: cache decent + CORS liber (pentru embed-uri dacă e nevoie) ———
+/assets/video/*
+  Cache-Control: public, max-age=2592000
+  Access-Control-Allow-Origin: *
+
+# ——— Sitemap & robots ———
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400

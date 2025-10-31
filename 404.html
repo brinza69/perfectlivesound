@@ -4,22 +4,42 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>404 · Pagina nu există — Perfect Live Sound</title>
+
+  
+
+  <!-- Nu indexăm pagina de 404 -->
   <meta name="robots" content="noindex,follow" />
-  <link rel="icon" href="assets/img/logo.png" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Brand assets -->
+  <link rel="icon" href="/assets/img/logo.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+<meta name="theme-color" content="#0c0b17" />
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
   <style>
-    .e404{min-height:70vh;display:grid;place-items:center;text-align:center}
-    .e404 .box{max-width:600px}
+    /* ===== Stiluri scoped (nu ating restul site-ului) ===== */
+    .e404{min-height:70vh;display:grid;place-items:center;text-align:center;padding:24px 0}
+    .e404 .box{max-width:640px;margin:0 auto}
     .e404 h1{font-size:clamp(2rem,6vw,3rem);margin:.2rem 0}
     .e404 p{opacity:.85;margin:0 0 1rem}
+    .e404 .links{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+    .e404 .muted{opacity:.7;font-size:.95rem;margin-top:.6rem}
   </style>
 </head>
 <body>
-  <main class="e404 container">
+  <main class="e404 container" role="main">
     <div class="box">
       <h1>404 — pagina nu există</h1>
       <p>Linkul poate fi greșit sau pagina a fost mutată.</p>
-      <a class="btn cta" href="index.html">Înapoi la Acasă</a>
+
+      <div class="links">
+        <a class="btn cta" href="/">Înapoi la Acasă</a>
+        <a class="btn ghost" href="/servicii/">Vezi Serviciile</a>
+        <a class="btn ghost" href="/contact/">Contactează-ne</a>
+      </div>
+
+      <p class="muted">Dacă ai ajuns aici dintr-un link extern, <a href="/sitemap.xml">consultă sitemap-ul</a>.</p>
     </div>
   </main>
 </body>

@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  
+
   <!-- ==== Titlu + descriere (SERP) ==== -->
   <title>Acasă · Perfect Live Sound</title>
   <meta name="description" content="Perfect Live Sound — sonorizare profesională, lumini și DJ pentru nunți, corporate și petreceri. Ofertă personalizată pentru spațiul tău." />
@@ -31,57 +33,73 @@
 
   <!-- PWA / favicon / theming -->
   <meta name="theme-color" content="#0c0b17" />
-  <link rel="icon" href="assets/img/logo.png" />
+  <link rel="icon" href="/assets/img/logo.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+  <link rel="preload" as="image" href="/assets/img/logo.png" fetchpriority="high" />
 
   <!-- Font + CSS global -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <!-- Iconițe + JS global -->
   <script defer src="https://kit.fontawesome.com/8a1a3b3a2d.js" crossorigin="anonymous"></script>
-  <script defer src="assets/js/app.js"></script>
+  <script defer src="/assets/js/app.js"></script>
 
   <!-- ==== Schema.org (SEO) ==== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.perfectlivesound.com/#business",
-    "name": "Perfect Live Sound",
-    "url": "https://www.perfectlivesound.com/",
-    "telephone": "+40799054274",
-    "email": "perfectlivesound.booking@gmail.com",
-    "image": "https://www.perfectlivesound.com/assets/img/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Voinesti",
-      "addressRegion": "Dambovita",
-      "addressCountry": "RO"
-    },
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO"
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.perfectlivesound.com/#business",
+        "name": "Perfect Live Sound",
+        "url": "https://www.perfectlivesound.com/",
+        "telephone": "+40799054274",
+        "email": "perfectlivesound.booking@gmail.com",
+        "image": "https://www.perfectlivesound.com/assets/img/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Voinești",
+          "addressRegion": "Dâmbovița",
+          "addressCountry": "RO"
+        },
+        "areaServed": ["București","Ploiești","Târgoviște","Sinaia","Pitești"],
+        "priceRange": "$$",
+        "openingHoursSpecification": [{
+          "@type":"OpeningHoursSpecification",
+          "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens":"09:00","closes":"21:00"
+        }],
+        "sameAs": ["https://www.facebook.com/profile.php?id=100063663454164&locale=ro_RO"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.perfectlivesound.com/#website",
+        "url": "https://www.perfectlivesound.com/",
+        "name": "Perfect Live Sound",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.perfectlivesound.com/cauta?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.perfectlivesound.com/#breadcrumbs",
+        "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://www.perfectlivesound.com/" }]
+      }
     ]
   }
   </script>
 
   <style>
-    /* =========================================================
-       Stiluri locale pentru index (restul e în assets/css/style.css)
-       ========================================================= */
-
-    /* --- Preset variabile spațiere --- */
-    :root{
-      --gap-cards: 12px;           /* mobil */
-      --gap-sneak: 10px;           /* mobil */
-      --gap-cards-desktop: 28px;   /* desktop confort */
-      --gap-sneak-desktop: 16px;   /* desktop confort */
-      --gap-cards-xl: 32px;        /* >=1440px */
-      --gap-sneak-xl: 20px;
-    }
-
-    /* --- Utilities --- */
+    /* ===== (păstrat identic; doar SEO, fără schimbări vizuale) ===== */
+    :root{ --gap-cards:12px; --gap-sneak:10px; --gap-cards-desktop:28px; --gap-sneak-desktop:16px; --gap-cards-xl:32px; --gap-sneak-xl:20px; }
     :root{ --bg:#0c0b17; --surface:#121228; --text:#EDEDF8; --subtle:#A9A9C9; --lime:#c7ff2f; --cyan:#44d9ff; --violet:#9b5cff; }
     html{ scroll-behavior:smooth }
     body{ margin:0; background:var(--bg); color:var(--text); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif }
@@ -89,7 +107,6 @@
     a{ color:inherit; text-decoration:none }
     .container{ width:min(1120px,92vw); margin-inline:auto }
 
-    /* --- HERO (titlu + micro-animație „365”) --- */
     .hero.full{ position:relative; min-height:100dvh; display:grid; place-items:center; overflow:hidden }
     .hero-inner{ position:relative; z-index:1; text-align:center; padding:6vh 0 10vh }
     .hero-title{ font-weight:800; line-height:1.05; margin:0 0 10px; letter-spacing:.2px }
@@ -115,87 +132,51 @@
     .trust{ display:flex; gap:1rem; padding:0; list-style:none; justify-content:center; flex-wrap:wrap; color:var(--subtle) }
     .scrollhint{ display:inline-flex; gap:.4rem; align-items:center; margin-top:10px; opacity:.85 }
 
-    /* === ADD: HERO video background + overlay pentru lizibilitate === */
-    .hero-bg{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      filter:saturate(1.05) contrast(1.05);
-      z-index:0;
-      opacity:0; transition:opacity .6s ease; /* fade-in fin */
-    }
+    .hero-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.05) contrast(1.05); z-index:0; opacity:0; transition:opacity .6s ease; }
     .hero-bg.is-visible{ opacity:1; }
     .hero::after{
       content:""; position:absolute; inset:0; z-index:0;
-      background:
-        radial-gradient(120% 80% at 80% 10%, rgba(155,92,255,.22), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.40) 38%, rgba(0,0,0,.55));
+      background: radial-gradient(120% 80% at 80% 10%, rgba(155,92,255,.22), transparent 55%), linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.40) 38%, rgba(0,0,0,.55));
     }
 
-    /* --- SERVICII (3 carduri / rând) --- */
     .services{ padding:48px 0 56px }
     .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap-cards-desktop) }
     @media (max-width:1024px){ .card-grid{ grid-template-columns:repeat(2,1fr); gap:16px } }
     @media (max-width:640px){ .card-grid{ grid-template-columns:1fr; gap:var(--gap-cards) } }
     @media (min-width:1440px){ .card-grid{ gap:var(--gap-cards-xl) } }
-    .card{
-      cursor:pointer; position:relative; padding:24px; border-radius:18px;
-      background:
-        radial-gradient(120% 120% at 90% -20%, rgba(155,92,255,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 6px 22px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.02);
-      transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
-      overflow:hidden; will-change:transform;
+    .card{ cursor:pointer; position:relative; padding:24px; border-radius:18px;
+      background: radial-gradient(120% 120% at 90% -20%, rgba(155,92,255,.10), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08); box-shadow:0 6px 22px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.02);
+      transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease; overflow:hidden; will-change:transform;
     }
-    .card::before,
-    .card::after{ content:""; position:absolute; pointer-events:none; z-index:0; }
-    .card::before{
-      inset:-40% -30% auto auto; width:360px; height:360px; rotate:8deg;
-      background:radial-gradient(closest-side,
-        rgba(68,217,255,.35), rgba(199,255,47,.30) 45%, rgba(155,92,255,.28) 70%, transparent 72%);
+    .card::before{ content:""; position:absolute; inset:-40% -30% auto auto; width:360px; height:360px; rotate:8deg;
+      background:radial-gradient(closest-side, rgba(68,217,255,.35), rgba(199,255,47,.30) 45%, rgba(155,92,255,.28) 70%, transparent 72%);
       filter:blur(28px); opacity:0; transition:opacity .45s ease, transform .45s ease;
     }
-    .card::after{
-      inset:0; border-radius:18px; padding:1px;
+    .card::after{ content:""; position:absolute; inset:0; border-radius:18px; padding:1px;
       background:linear-gradient(135deg, rgba(199,255,47,.45), rgba(68,217,255,.45), rgba(155,92,255,.45));
       opacity:0; filter:blur(10px); transition:opacity .45s ease;
-      mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       mask-composite:exclude; -webkit-mask-composite:destination-out;
     }
     .card > *{ position:relative; z-index:1 }
-    .card .icon{
-      font-size:26px;
-      background:linear-gradient(135deg,var(--lime),var(--cyan),var(--violet));
-      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-      filter:drop-shadow(0 2px 8px rgba(68,217,255,.25));
+    .card .icon{ font-size:26px; background:linear-gradient(135deg,var(--lime),var(--cyan),var(--violet));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 2px 8px rgba(68,217,255,.25));
     }
     .card p{ margin-bottom:.8rem }
-    .card:hover, .card:focus-within{
-      transform:translateY(-4px);
-      border-color:rgba(255,255,255,.16);
+    .card:hover, .card:focus-within{ transform:translateY(-4px); border-color:rgba(255,255,255,.16);
       box-shadow:0 16px 44px rgba(0,0,0,.40), 0 0 22px rgba(68,217,255,.10), inset 0 0 0 1px rgba(255,255,255,.04);
     }
     .card:hover::before, .card:focus-within::before{ opacity:.85; transform:translate3d(-8px,-6px,0) }
     .card:hover::after,  .card:focus-within::after{ opacity:.35 }
     .card .more{ position:relative; z-index:2; display:inline-flex; align-items:center; gap:.35rem; padding:.25rem .1rem; border-radius:8px }
-    .card .more:focus-visible{ outline:2px solid rgba(68,217,255,.6); outline-offset:2px }
 
-    /* --- SNEAK-PEEK (mobil = carusel; desktop = grilă 2×3) --- */
     .spk{ padding:22px 0 20px }
     .spk-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 12px }
-    .spk-track{
-      display:flex; gap:var(--gap-sneak); overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-      padding:2px 4px 10px;
-      mask-image:linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
-      -webkit-mask-image:linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
-      scrollbar-width:none;
-    }
+    .spk-track{ display:flex; gap:var(--gap-sneak); overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      padding:2px 4px 10px; mask-image:linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); scrollbar-width:none; }
     .spk-track::-webkit-scrollbar{ display:none }
-    .spk-item{
-      position:relative; min-width:86%; aspect-ratio:16/10; scroll-snap-align:center;
-      border-radius:16px; overflow:hidden; background:#0f0f1d;
-      box-shadow:0 10px 26px rgba(0,0,0,.28); transform:translateZ(0);
-    }
+    .spk-item{ position:relative; min-width:86%; aspect-ratio:16/10; scroll-snap-align:center; border-radius:16px; overflow:hidden; background:#0f0f1d; box-shadow:0 10px 26px rgba(0,0,0,.28); transform:translateZ(0); }
     .spk-item.is-hero{ min-width:90% }
     .spk-item img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .35s ease, filter .35s ease }
     .spk-item:hover img{ transform:scale(1.03); filter:contrast(1.03) }
@@ -209,14 +190,9 @@
     .spk-note{ margin:0; opacity:.75; font-size:.98rem }
     .spk-btn{ display:inline-flex !important; width:auto !important; max-width:320px; justify-content:center; text-align:center; padding:.9rem 1.2rem; line-height:1; border-radius:14px }
 
-    /* === EDIT: Layout desktop pentru sneak-peek (poza mare pe CENTRU) === */
     @media (min-width:980px){
-      .spk-track{
-        display:grid; grid-template-columns:1fr 1.2fr 1fr; grid-template-rows:200px 200px;
-        gap:var(--gap-sneak-desktop);
-        overflow:visible; mask:none; -webkit-mask-image:none; scroll-snap-type:none; padding:0;
-        grid-template-areas:"a hero b" "c hero d";
-      }
+      .spk-track{ display:grid; grid-template-columns:1fr 1.2fr 1fr; grid-template-rows:200px 200px; gap:var(--gap-sneak-desktop);
+        overflow:visible; mask:none; -webkit-mask-image:none; scroll-snap-type:none; padding:0; grid-template-areas:"a hero b" "c hero d"; }
       .spk-item{ min-width:0; scroll-snap-align:auto }
       .spk-item:nth-child(1){ grid-area:hero }
       .spk-item:nth-child(2){ grid-area:a }
@@ -227,7 +203,6 @@
     }
     @media (min-width:1440px){ .spk-track{ gap:var(--gap-sneak-xl) } }
 
-    /* --- Testimoniale --- */
     .testimonials{ background:radial-gradient(800px 400px at 85% 15%, rgba(155,92,255,.15), transparent); padding:56px 0 }
     .tgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
     .tcard{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px }
@@ -242,36 +217,31 @@
 <body>
   <a class="skip" href="#main">Sari la conținut</a>
 
-  <!-- =========================
-       HEADER (global – stil în style.css)
-       ========================= -->
+  <!-- ========================= HEADER ========================= -->
   <header class="hdr" role="banner">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Perfect Live Sound">
-        <img src="assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
+      <a class="brand" href="/" aria-label="Perfect Live Sound">
+        <img src="/assets/img/logo.png" alt="Perfect Live Sound" class="logo" />
         <span class="wordmark">Perfect Live Sound</span>
       </a>
 
       <nav class="menu" id="nav" aria-label="Meniu principal">
-        <a href="index.html" aria-current="page">Acasă</a>
-        <a href="servicii.html">Servicii</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="contact.html">Contact</a>
+        <a href="/" aria-current="page">Acasă</a>
+        <a href="/servicii/">Servicii</a>
+        <a href="/galerie/">Galerie</a>
+        <a href="/contact/">Contact</a>
       </nav>
 
       <div class="nav-cta">
-        <a href="contact.html" class="btn cta">Solicită ofertă</a>
+        <a href="/contact/" class="btn cta">Solicită ofertă</a>
         <button class="burger" aria-label="Meniu" aria-expanded="false"><span></span></button>
       </div>
     </div>
   </header>
 
   <main id="main" role="main">
-    <!-- =========================
-         HERO
-         ========================= -->
+    <!-- ========================= HERO ========================= -->
     <section class="hero full" data-animate aria-label="Hero video light show">
-      <!-- Video background optimizat: DOAR 720p -->
       <video id="heroVid" class="hero-bg" autoplay muted loop playsinline preload="metadata"></video>
 
       <div class="container hero-inner">
@@ -285,8 +255,8 @@
         <p>Asigurăm muzică live și DJ, microfoane wireless și efecte de lumini. Ofertă personalizată, configurată pentru spațiul și publicul tău.</p>
 
         <div class="cta-row">
-          <a class="btn cta big" href="contact.html">Solicită ofertă</a>
-          <a class="btn ghost big" href="galerie.html">Vezi Galeria</a>
+          <a class="btn cta big" href="/contact/">Solicită ofertă</a>
+          <a class="btn ghost big" href="/galerie/">Vezi Galeria</a>
         </div>
 
         <ul class="trust" aria-label="Avantaje">
@@ -299,9 +269,7 @@
       </div>
     </section>
 
-    <!-- =========================
-         SERVICII (3 carduri / rând)
-         ========================= -->
+    <!-- ========================= SERVICII ========================= -->
     <section id="serv" class="services container" data-animate>
       <h2>Serviciile noastre</h2>
 
@@ -310,80 +278,74 @@
           <i class="fa-solid fa-volume-high icon" aria-hidden="true"></i>
           <h3>Sonorizare Profesională</h3>
           <p>Sisteme scalabile pentru acoperire uniformă.</p>
-          <a href="servicii.html#sonorizare" class="more">Află mai mult →</a>
+          <a href="/servicii/#sonorizare" class="more">Află mai mult →</a>
         </article>
 
         <article class="card">
           <i class="fa-solid fa-lightbulb icon" aria-hidden="true"></i>
           <h3>Echipamente Lumini</h3>
           <p>Moving heads, wash, laser & control DMX.</p>
-          <a href="servicii.html#lumini" class="more">Află mai mult →</a>
+          <a href="/servicii/#lumini" class="more">Află mai mult →</a>
         </article>
 
         <article class="card">
           <i class="fa-solid fa-headphones icon" aria-hidden="true"></i>
           <h3>DJ Services</h3>
           <p>Playlist-uri adaptate și MC, integrate cu lumini.</p>
-          <a href="servicii.html#dj" class="more">Află mai mult →</a>
+          <a href="/servicii/#dj" class="more">Află mai mult →</a>
         </article>
       </div>
     </section>
 
-    <!-- =========================
-         SNEAK-PEEK GALERIE (poza mare pe centru)
-         ========================= -->
+    <!-- ========================= SNEAK-PEEK ========================= -->
     <section class="container spk" aria-labelledby="galTitle" data-animate>
       <div class="spk-head">
         <h2 id="galTitle">Galerie</h2>
-        <a class="btn ghost" href="galerie.html">Vezi toată galeria →</a>
+        <a class="btn ghost" href="/galerie/">Vezi toată galeria →</a>
       </div>
 
       <div class="spk-track" id="spkTrack" aria-label="Sneak peek galerie">
-        <a class="spk-item is-hero" href="assets/poze_sneak_peek/sonorizare-nunta-petrecere-lumini-ambientale-mixer-dj-perfect-live-sound.webp" data-lb="peek">
+        <a class="spk-item is-hero" href="/assets/poze_sneak_peek/sonorizare-nunta-petrecere-lumini-ambientale-mixer-dj-perfect-live-sound.webp" data-lb="peek">
           <span class="spk-badge">Live</span>
-          <img loading="lazy" alt="Pupitru DJ și sonorizare profesională în timpul unei petreceri cu lumini albastre" src="assets/poze_sneak_peek/sonorizare-nunta-petrecere-lumini-ambientale-mixer-dj-perfect-live-sound.webp">
+          <img loading="lazy" alt="Pupitru DJ și sonorizare profesională în timpul unei petreceri cu lumini albastre" src="/assets/poze_sneak_peek/sonorizare-nunta-petrecere-lumini-ambientale-mixer-dj-perfect-live-sound.webp">
           <span class="spk-overlay"></span>
           <span class="spk-cap">Atmosferă creată de lumini și sunet</span>
         </a>
 
-        <a class="spk-item" href="assets/poze_sneak_peek/sonorizare-formatie-live-scena-nunta-boxe-fbt-subwoofere-perfect-live-sound.webp" data-lb="peek">
-          <img loading="lazy" alt="Scenă pregătită pentru formație live cu boxe FBT, subwoofere și tobe electronice" src="assets/poze_sneak_peek/sonorizare-formatie-live-scena-nunta-boxe-fbt-subwoofere-perfect-live-sound.webp">
+        <a class="spk-item" href="/assets/poze_sneak_peek/sonorizare-formatie-live-scena-nunta-boxe-fbt-subwoofere-perfect-live-sound.webp" data-lb="peek">
+          <img loading="lazy" alt="Scenă pregătită pentru formație live cu boxe FBT, subwoofere și tobe electronice" src="/assets/poze_sneak_peek/sonorizare-formatie-live-scena-nunta-boxe-fbt-subwoofere-perfect-live-sound.webp">
           <span class="spk-overlay"></span>
           <span class="spk-cap">Pregătiți pentru formație live</span>
         </a>
 
-        <a class="spk-item" href="assets/poze_sneak_peek/inchiriere-echipament-sunet-profesional-boxe-dynacord-mixer-perfect-live-sound.webp" data-lb="peek">
-          <img loading="lazy" alt="Echipament de sunet de închiriat, mixer digital și rack-uri profesionale" src="assets/poze_sneak_peek/inchiriere-echipament-sunet-profesional-boxe-dynacord-mixer-perfect-live-sound.webp">
+        <a class="spk-item" href="/assets/poze_sneak_peek/inchiriere-echipament-sunet-profesional-boxe-dynacord-mixer-perfect-live-sound.webp" data-lb="peek">
+          <img loading="lazy" alt="Echipament de sunet de închiriat, mixer digital și rack-uri profesionale" src="/assets/poze_sneak_peek/inchiriere-echipament-sunet-profesional-boxe-dynacord-mixer-perfect-live-sound.webp">
           <span class="spk-overlay"></span>
           <span class="spk-cap">Echipament high-end</span>
         </a>
 
-        <a class="spk-item" href="assets/poze_sneak_peek/instalare-sunet-eveniment-boxe-dynacord-mixer-digital-perfect-live-sound.webp" data-lb="peek">
-          <img loading="lazy" alt="Tehnician Perfect Live Sound instalând boxe Dynacord și mixer digital" src="assets/poze_sneak_peek/instalare-sunet-eveniment-boxe-dynacord-mixer-digital-perfect-live-sound.webp">
+        <a class="spk-item" href="/assets/poze_sneak_peek/instalare-sunet-eveniment-boxe-dynacord-mixer-digital-perfect-live-sound.webp" data-lb="peek">
+          <img loading="lazy" alt="Tehnician Perfect Live Sound instalând boxe Dynacord și mixer digital" src="/assets/poze_sneak_peek/instalare-sunet-eveniment-boxe-dynacord-mixer-digital-perfect-live-sound.webp">
           <span class="spk-overlay"></span>
           <span class="spk-cap">Setup profesional</span>
         </a>
 
-        <a class="spk-item" href="assets/poze_sneak_peek/mixer-dynacord-cms-1600-sonorizare-petrecere-lumini-led-perfect-live-sound.webp" data-lb="peek">
-          <img loading="lazy" alt="Mixer audio Dynacord CMS 1600 și perdea de lumini LED" src="assets/poze_sneak_peek/mixer-dynacord-cms-1600-sonorizare-petrecere-lumini-led-perfect-live-sound.webp">
+        <a class="spk-item" href="/assets/poze_sneak_peek/mixer-dynacord-cms-1600-sonorizare-petrecere-lumini-led-perfect-live-sound.webp" data-lb="peek">
+          <img loading="lazy" alt="Mixer audio Dynacord CMS 1600 și perdea de lumini LED" src="/assets/poze_sneak_peek/mixer-dynacord-cms-1600-sonorizare-petrecere-lumini-led-perfect-live-sound.webp">
           <span class="spk-overlay"></span>
           <span class="spk-cap">Sunet clar și lumini LED</span>
         </a>
       </div>
 
-      <!-- Buline carusel (populate din JS) -->
       <div class="spk-dots" id="spkDots" aria-hidden="true"></div>
 
-      <!-- CTA minimalist (un singur buton centrat) -->
       <div class="spk-cta">
         <p class="spk-note">Galerie completă cu proiecte reale.</p>
-        <a class="btn cta big spk-btn" href="galerie.html">Vezi toată galeria</a>
+        <a class="btn cta big spk-btn" href="/galerie/">Vezi toată galeria</a>
       </div>
     </section>
 
-    <!-- =========================
-         Testimoniale
-         ========================= -->
+    <!-- ========================= Testimoniale ========================= -->
     <section class="testimonials" data-animate>
       <div class="container">
         <h2>Ce spun clienții</h2>
@@ -428,22 +390,18 @@
       </div>
     </section>
 
-    <!-- =========================
-         CALL-TO-ACTION final
-         ========================= -->
+    <!-- ========================= CTA final ========================= -->
     <section class="container center" style="padding:24px 0 12px" data-animate>
       <h2>Hai să construim atmosfera evenimentului tău</h2>
-      <a class="btn cta big" href="contact.html">Contactează-ne acum</a>
+      <a class="btn cta big" href="/contact/">Contactează-ne acum</a>
     </section>
   </main>
 
-  <!-- =========================
-       FOOTER (global)
-       ========================= -->
+  <!-- ========================= FOOTER ========================= -->
   <footer class="ftr" role="contentinfo">
     <div class="container fgrid">
       <section class="fcard brand-footer">
-        <img src="assets/img/logo.png" class="logo" alt="Perfect Live Sound" />
+        <img src="/assets/img/logo.png" class="logo" alt="Perfect Live Sound" />
         <span class="wordmark">Perfect Live Sound</span>
         <p>Sunet, lumini și echipamente audio-video pentru evenimente memorabile.</p>
         <div class="socials one">
@@ -456,10 +414,10 @@
       <section class="fcard" aria-label="Navigație secundară">
         <h4>Pagini</h4>
         <ul>
-          <li><a href="index.html" aria-current="page">Acasă</a></li>
-          <li><a href="servicii.html">Servicii</a></li>
-          <li><a href="galerie.html">Galerie</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/" aria-current="page">Acasă</a></li>
+          <li><a href="/servicii/">Servicii</a></li>
+          <li><a href="/galerie/">Galerie</a></li>
+          <li><a href="/contact/">Contact</a></li>
         </ul>
       </section>
 
@@ -468,18 +426,15 @@
         <ul class="contact">
           <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+40799054274">+40 799 054 274</a></li>
           <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:perfectlivesound.booking@gmail.com">perfectlivesound.booking@gmail.com</a></li>
-          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Voinesti, Dambovita</li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Voinești, Dâmbovița</li>
         </ul>
       </section>
     </div>
     <div class="container copy">© 2025 Perfect Live Sound • Toate drepturile rezervate</div>
   </footer>
 
-  <!-- =========================
-       SCRIPTURI scurte: count-up + lightbox + buline carusel
-       ========================= -->
+  <!-- ========================= Scripts locale (păstrate) ========================= -->
   <script>
-    // 1) „365” – numărătoare simplă în HERO (respectă prefers-reduced-motion)
     (function(){
       const el = document.getElementById('num365');
       if(!el) return;
@@ -495,11 +450,9 @@
       requestAnimationFrame(tick);
     })();
 
-    // 2) Lightbox minimal (pentru elementele cu [data-lb])
     (function(){
       const items = document.querySelectorAll('[data-lb]');
       if(!items.length) return;
-
       const backdrop = document.createElement('div');
       backdrop.className = 'lightbox-backdrop';
       backdrop.innerHTML = `
@@ -511,7 +464,6 @@
           <div class="lb-count" hidden></div>
         </div>`;
       document.body.appendChild(backdrop);
-
       const media = backdrop.querySelector('.lightbox-media');
       const count = backdrop.querySelector('.lb-count');
       const close = ()=> backdrop.classList.remove('active');
@@ -543,12 +495,10 @@
       }
     })();
 
-    // 3) Buline pentru caruselul de sneak-peek (mobil)
     (function(){
       const track = document.getElementById('spkTrack');
       const dots  = document.getElementById('spkDots');
       if(!track || !dots) return;
-
       const items = [...track.querySelectorAll('.spk-item')];
       dots.innerHTML = items.map((_,i)=>`<button type="button" aria-label="Slide ${i+1}"></button>`).join('');
       const dbtns = [...dots.querySelectorAll('button')];
@@ -571,18 +521,10 @@
       dbtns.forEach((b,i)=> b.addEventListener('click', ()=> items[i].scrollIntoView({behavior:'smooth', inline:'center'})));
     })();
 
-    /* === HERO video – doar 720p MP4, play robust (iOS safe) === */
     (function(){
       const vid = document.getElementById('heroVid'); if(!vid) return;
-
-      // Politici autoplay prietenoase
-      vid.setAttribute('muted','');
-      vid.muted = true;
-      vid.playsInline = true;
-
-      // Doar 720p
-      const src = 'assets/video/lights-720.mp4';
-
+      vid.setAttribute('muted',''); vid.muted = true; vid.playsInline = true;
+      const src = '/assets/video/lights-720.mp4';
       function attach(){
         if (vid.dataset.ready) return;
         const s = document.createElement('source');
@@ -591,29 +533,20 @@
         vid.dataset.ready = '1';
         vid.load();
       }
-
       function tryPlay(){
         const p = vid.play?.();
         if (p && typeof p.then === 'function') {
-          p.then(()=> vid.classList.add('is-visible'))
-           .catch(()=>{/* pornim la prima interacțiune */});
-        } else {
-          vid.classList.add('is-visible');
-        }
+          p.then(()=> vid.classList.add('is-visible')).catch(()=>{});
+        } else { vid.classList.add('is-visible'); }
       }
-
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((ents)=>{
           if (ents.some(e=>e.isIntersecting)) { attach(); tryPlay(); io.disconnect(); }
         }, { rootMargin:'0px 0px 200px 0px' });
         io.observe(vid);
-      } else {
-        attach(); tryPlay();
-      }
-
+      } else { attach(); tryPlay(); }
       const kick = ()=>{ attach(); tryPlay(); window.removeEventListener('pointerdown', kick, {passive:true}); };
       window.addEventListener('pointerdown', kick, {passive:true});
-
       const m = matchMedia('(prefers-reduced-motion: reduce)');
       function apply(){ if(m.matches){ vid.pause(); vid.removeAttribute('autoplay'); } }
       apply(); m.addEventListener?.('change', apply);

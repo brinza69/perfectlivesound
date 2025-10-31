@@ -1,13 +1,26 @@
+# =====================================
+# Perfect Live Sound – Robots.txt
+# Domeniu oficial: https://www.perfectlivesound.com
+# Ultima actualizare: 2025-10-31
+# =====================================
+
 User-agent: *
+# Permitem tot conținutul public
 Allow: /
 
-# Nu indexa folderele tehnice
-Disallow: /assets/css/
+# Excludem fișiere inutile pentru indexare
 Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /assets/video/
+Disallow: /assets/poze_gallery/
+Disallow: /assets/poze servicii/
+Disallow: /assets/img/
 
-# Permite imaginile
-Allow: /assets/poze_gallery/
-Allow: /assets/poze_sneak_peek/
-Allow: /assets/poze servicii/
+# Nu indexăm fișierul 404
+Disallow: /404.html
 
+# — Canonical preferat: domeniul cu www —
+Host: www.perfectlivesound.com
+
+# — Sitemap complet —
 Sitemap: https://www.perfectlivesound.com/sitemap.xml
