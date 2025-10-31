@@ -1,22 +1,19 @@
-# ===== Canonical: non-www -> WWW (și HTTP -> HTTPS) =====
-http://perfectlivesound.com/*        https://www.perfectlivesound.com/:splat  301
-https://perfectlivesound.com/*       https://www.perfectlivesound.com/:splat  301
-http://www.perfectlivesound.com/*    https://www.perfectlivesound.com/:splat  301
+# ===== Canonical: non-www -> WWW =====
+http://perfectlivesound.com/*      https://www.perfectlivesound.com/:splat  301
+https://perfectlivesound.com/*     https://www.perfectlivesound.com/:splat  301
+http://www.perfectlivesound.com/*  https://www.perfectlivesound.com/:splat  301
 
-# ===== Rewrites pentru URL-uri curate (servesc fișierele .html) =====
-/                   /index.html        200
-/servicii           /servicii.html     200
-/servicii/          /servicii.html     200
-/galerie            /galerie.html      200
-/galerie/           /galerie.html      200
-/contact            /contact.html      200
-/contact/           /contact.html      200
+# ===== Servire pagini (folder-style URLs) =====
+/                  /index.html       200
+/servicii/         /servicii.html    200
+/galerie/          /galerie.html     200
+/contact/          /contact.html     200
 
-# ===== Redirecte din .html spre URL-ul canonic (fără .html) =====
-/index.html         /                  301
-/servicii.html      /servicii        301
-/galerie.html       /galerie          301
-/contact.html       /contact          301
+# ===== .html -> varianta canonică cu slash =====
+/index.html        /                 301
+/servicii.html     /servicii/        301
+/galerie.html      /galerie/         301
+/contact.html      /contact/         301
 
-# ===== 404 fallback (după toate regulile) =====
-/*                  /404.html          404
+# ===== 404 fallback (MUSAI pe ultimul rând) =====
+/*                 /404.html         404
